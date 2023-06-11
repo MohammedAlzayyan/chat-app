@@ -1,4 +1,4 @@
-'use client'
+
 
 import ChatWrapper from '@/context'
 import './globals.css'
