@@ -1,9 +1,13 @@
 "use client";
 
+import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
 
 const SignUpForm = () => {
+  const [isLoading, setIsLoading] = React.useState(false);
+
   const {
     register,
     getValues,
@@ -12,7 +16,21 @@ const SignUpForm = () => {
     formState: { error },
   } = useForm();
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    setIsLoading(true);
+    axios
+      .post("/api/register", data)
+      .then(() => signIn("credentials", data))
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        toast.error("Something went wrong!");
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
 
   // console.log(getValues("email"));
 
@@ -33,12 +51,12 @@ const SignUpForm = () => {
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-sm">
           <form
             className="space-y-4"
-            action="#"
-            method="POST"
+            // action="#"
+            // method="POST"
             onSubmit={handleSubmit(onSubmit)}
           >
-            <div className="flex gap-4">
-              <div>
+            <div className="">
+              {/* <div>
                 <label
                   for="first_name"
                   className="block text-sm font-medium leading-6 text-gray-900"
@@ -75,6 +93,25 @@ const SignUpForm = () => {
                     className="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-400  sm:text-sm sm:leading-6"
                   />
                 </div>
+              </div> */}
+              <div>
+                <label
+                  for="name"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Name
+                </label>
+                <div className="mt-1">
+                  <input
+                    id="name"
+                    // name="email"
+                    type="text"
+                    autocomplete="name"
+                    // required
+                    {...register("name")}
+                    className="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-400  sm:text-sm sm:leading-6"
+                  />
+                </div>
               </div>
             </div>
             <div>
@@ -91,7 +128,7 @@ const SignUpForm = () => {
                   type="email"
                   autocomplete="email"
                   // required
-                  {...register("email", { required: true })}
+                  {...register("email")}
                   className="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-400  sm:text-sm sm:leading-6"
                 />
               </div>
@@ -113,13 +150,13 @@ const SignUpForm = () => {
                   type="password"
                   autocomplete="current-password"
                   // required
-                  {...register("password", { required: true })}
+                  {...register("password")}
                   className="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-400  sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
 
-            <div>
+            {/* <div>
               <label
                 for="phone_number"
                 className="block text-sm font-medium leading-6 text-gray-900"
@@ -137,7 +174,7 @@ const SignUpForm = () => {
                   className="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-400  sm:text-sm sm:leading-6"
                 />
               </div>
-            </div>
+            </div> */}
 
             <div>
               <button

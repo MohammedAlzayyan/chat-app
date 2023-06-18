@@ -1,3 +1,5 @@
+"use client";
+
 import Drawer from "@/components/Drawer";
 import {
   ArrowDown,
@@ -11,6 +13,7 @@ import BlockIcon from "@/components/svg/BlockIcon";
 import DeleteIcon from "@/components/svg/DeleteIcon";
 import { useDrawer } from "@/hooks/useDrawer";
 import { Menu, Transition } from "@headlessui/react";
+import { signOut } from "next-auth/react";
 import { Fragment } from "react";
 
 const Navbar = () => {
@@ -31,7 +34,7 @@ const Navbar = () => {
         </div>
       </div>
       <div className="flex gap-4 items-center">
-        <VideoIcon />
+        <VideoIcon onClick={() => signOut()} />
         <Phone />
         <SearchIcon />
         <span className="block w-[1px] h-7 bg-gray-300"></span>

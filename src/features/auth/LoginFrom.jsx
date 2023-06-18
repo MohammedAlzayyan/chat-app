@@ -1,9 +1,20 @@
 "use client";
 
-import React from "react";
+import axios from "axios";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
+import { signIn, useSession } from "next-auth/react";
+import { toast } from "react-hot-toast";
+import SoicalAuth from "./SoicalAuth";
+import { GithubIcon, GoogleIcon } from "@/components/svg";
+import { useRouter } from "next/navigation";
+
 const LoginForm = () => {
+  const session = useSession();
+  const router = useRouter();
+  const [isLoading, setIsLoading] = React.useState(false);
+
   const {
     register,
     getValues,
@@ -12,7 +23,50 @@ const LoginForm = () => {
     formState: { error },
   } = useForm();
 
-  const onSubmit = (data) => console.log(data);
+  useEffect(() => {
+    if (session?.status === "authenticated") {
+      router.push("/pages/chatPage");
+    }
+  }, [session?.status, router]);
+
+  const onSubmit = (data) => {
+    setIsLoading(true);
+
+    signIn("credentials", {
+      ...data,
+      redirect: false,
+    })
+      .then((callback) => {
+        if (callback.error) {
+          toast.error("Invalid credentials");
+        }
+
+        if (callback?.ok && !callback?.error) {
+          toast.success("Login successful");
+          router.push("/pages/chatPage");
+        }
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
+
+  const handleSocialAuth = (provider) => {
+    setIsLoading(true);
+
+    signIn(provider, { redirect: false })
+      .then((callback) => {
+        if (callback?.error) {
+          toast.error("Invalid credentials");
+        }
+        if (callback?.ok && !callback?.error) {
+          toast.success("Login successful");
+        }
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
 
   // console.log(getValues("email"));
 
@@ -31,12 +85,7 @@ const LoginForm = () => {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form
-            className="space-y-6"
-            action="#"
-            method="POST"
-            onSubmit={handleSubmit(onSubmit)}
-          >
+          <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
             <div>
               <label
                 for="email"
@@ -94,6 +143,17 @@ const LoginForm = () => {
               >
                 Sign in
               </button>
+            </div>
+
+            <div className="mt-4 flex gap-2">
+              <SoicalAuth
+                icon={<GithubIcon className="w-5 h-5" />}
+                onClick={() => handleSocialAuth("github")}
+              />
+              <SoicalAuth
+                icon={<GoogleIcon />}
+                onClick={() => handleSocialAuth("google")}
+              />
             </div>
           </form>
 

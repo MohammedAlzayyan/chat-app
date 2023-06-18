@@ -1,7 +1,7 @@
-
-
 import ChatWrapper from '@/context'
 import './globals.css'
+import ToasterContext from '@/context/ToasterContext'
+import AuthContext from '@/context/AuthContext'
 
 export const metadata = {
   title: 'Create Next App',
@@ -17,7 +17,10 @@ export default function RootLayout({ children }) {
 
       <body>
         <ChatWrapper>
-          <main className="">{children}</main>
+          <AuthContext>
+            <ToasterContext />
+            <main className="">{children}</main>
+          </AuthContext>
         </ChatWrapper>
       </body>
     </html>

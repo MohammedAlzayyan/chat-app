@@ -5,6 +5,7 @@ module.exports = {
     './src/features/**/*.{js,jsx}',
     './src/components/**/*.{js,jsx}',
     './src/layouts/**/*.{js,jsx}',
+    './src/lib/**/*.{js,jsx}',
   ],
   theme: {
     extend: {},
