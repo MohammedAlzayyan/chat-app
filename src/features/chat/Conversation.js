@@ -1,3 +1,5 @@
+import { Phone } from '@/components/svg'
+
 const TextMsg = ({ item }) => {
   return (
     <div className={`flex justify-start`}>
@@ -16,11 +18,12 @@ const ImageMsg = ({ item }) => {
     <div className={`flex justify-end`}>
       <div className="bg-blue-300 px-2 py-2 rounded-xl">
         {/* <img src={item.src} alt={item.alt} className="w-20 h-14" /> */}
-        <img
+        {/* <img
           src="https://png.pngitem.com/pimgs/s/54-546782_download-nature-high-quality-png-nature-png-transparent.png"
           alt="vercel"
           className="w-[250px] h-[200px] rounded-xl"
-        />
+        /> */}
+        <Phone />
       </div>
     </div>
   )

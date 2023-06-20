@@ -1,5 +1,6 @@
 "use client";
 
+import { Phone } from "@/components/svg";
 import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
@@ -38,11 +39,12 @@ const SignUpForm = () => {
     <div className="flex justify-center items-center w-full h-screen bg-slate-200">
       <div className="flex min-h-[45vh] w-[380px] bg-white shadow-lg flex-col justify-center px-6 py-5 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          <img
+          {/* <img
             className="mx-auto h-10 w-auto"
             src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
             alt="Your Company"
-          />
+          /> */}
+          <Phone />
           <h2 className="mt-5 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
             Sign up a new account
           </h2>

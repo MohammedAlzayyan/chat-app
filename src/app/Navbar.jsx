@@ -86,11 +86,7 @@ const Navbar = () => {
       <Drawer isOpen={isOpen} close={closeDrawer}>
         <div className="flex flex-col gap-3">
           <div className="flex flex-col justify-center items-center bg-red-300">
-            <img
-              src="https://png.pngitem.com/pimgs/s/54-546782_download-nature-high-quality-png-nature-png-transparent.png"
-              alt="user-image"
-              className="w-48 h-48 rounded-full object-cover"
-            />
+            <Phone />
             <span>00970599254871</span>
             <span>user name</span>
           </div>
@@ -106,16 +102,18 @@ const Navbar = () => {
               <ArrowRight className="w-5 h-5" />
             </div>
             <div className="flex gap-1">
-              <img
+              {/* <img
                 src="https://png.pngitem.com/pimgs/s/54-546782_download-nature-high-quality-png-nature-png-transparent.png"
                 alt="images"
                 className="w-20 h-20 rounded-full object-cover"
-              />
-              <img
+              /> */}
+              {/* <img
                 src="https://png.pngitem.com/pimgs/s/54-546782_download-nature-high-quality-png-nature-png-transparent.png"
                 alt="images"
                 className="w-20 h-20 rounded-full object-cover"
-              />
+              /> */}
+              <Phone />
+              <Phone />
             </div>
           </div>
 
