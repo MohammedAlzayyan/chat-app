@@ -2,7 +2,7 @@ import { LinkIcon, SendIcon } from '@/components/svg'
 
 const Home = () => {
   return (
-    <div className="flex flex-col text-sm text-red-500">
+    <div className="flex flex-col text-sm text-red-500 text-center mt-24">
       {/* <div className="min-h-[450px] bg-green-400 w-full"></div>
       <div className="relative flex gap-2 bg-blue-400 p-4 w-full">
         <input
@@ -17,6 +17,12 @@ const Home = () => {
         </div>
       </div> */}
       home
+      <a
+        href="/login"
+        className="font-semibold text-3xl leading-6 text-indigo-600 hover:text-indigo-500 mt-20"
+      >
+        Login
+      </a>
     </div>
   )
 }
