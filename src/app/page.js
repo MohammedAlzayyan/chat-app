@@ -17,11 +17,17 @@ const Home = () => {
         </div>
       </div> */}
       home
-      <a
+      {/* <a
         href="/login"
         className="font-semibold text-3xl leading-6 text-indigo-600 hover:text-indigo-500 mt-20"
       >
         Login
+      </a> */}
+      <a
+        href="/pages/chatPage"
+        className="font-semibold text-3xl leading-6 text-indigo-600 hover:text-indigo-500 mt-20"
+      >
+        Chat
       </a>
     </div>
   )
